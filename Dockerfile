@@ -1,17 +1,8 @@
-# Use a lightweight Alpine Linux base image
-FROM alpine:latest
+# Use official nginx image
+FROM nginx:alpine
 
-# Install Nginx
-RUN apk add --no-cache nginx
-
-# Copy the HTML file to the Nginx web root
-COPY index.html /usr/share/nginx/html/
-
-# Set the working directory to the Nginx web root
-WORKDIR /usr/share/nginx/html/
+# Copy your index.html to the default nginx public folder
+COPY index.html /usr/share/nginx/html/index.html
 
 # Expose port 80
 EXPOSE 80
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
